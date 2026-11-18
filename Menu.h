@@ -1,27 +1,14 @@
-#ifndef MENU_H
-#define MENU_H
-
-#include <iostream>
-#include <vector>
+/*
+ * File: Menu.h
+ * Mo ta: Quan ly danh sach Menu (doc/ghi file, them, sua, tim)
+ * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Ngay viet: 16/11/2026
+ */
+#pragma once
 #include <string>
-#include "Utils.h"
+#include <vector>
 
 class Menu {
 public:
-    template <typename T>
-    int int_getChoice(const std::vector<T>& options) {
-        for (size_t i = 0; i < options.size(); ++i) {
-            std::cout << (i + 1) << ". " << options[i] << "\n";
-        }
-        return Utils::inputInt("Choose an option (1-" + std::to_string(options.size()) + "): ",
-                               1, static_cast<int>(options.size()));
-    }
-
-    template <typename T>
-    T ref_getChoice(const std::vector<T>& options) {
-        int response = int_getChoice(options);
-        return options[response - 1];
-    }
+    static int getChoice(const std::vector<std::string>& options);
 };
-
-#endif

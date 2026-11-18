@@ -1,9 +1,13 @@
+/*
+ * File: AccountType.h
+ * Mo ta: Quan ly danh sach AccountType (doc/ghi file, them, sua, tim)
+ * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Ngay viet: 16/11/2026
+ */
 #ifndef ACCOUNTTYPE_H
 #define ACCOUNTTYPE_H
 
 #include <string>
-#include <sstream>
-#include <iomanip>
 
 class AccountType {
 private:
@@ -13,29 +17,20 @@ private:
     double interestRate;
 
 public:
-    AccountType() : accountTypeID(""), typeName(""), currency(""), interestRate(0.0) {}
+    AccountType(std::string id, std::string name,
+                std::string curr, double rate);
 
-    AccountType(std::string id, std::string name, std::string curr, double rate)
-        : accountTypeID(id), typeName(name), currency(curr), interestRate(rate) {}
+    const std::string& getAccountTypeID() const;
+    const std::string& getTypeName() const;
+    const std::string& getCurrency() const;
+    double getInterestRate() const;
 
-    // Getters
-    std::string getAccountTypeID() const { return accountTypeID; }
-    std::string getTypeName() const { return typeName; }
-    std::string getCurrency() const { return currency; }
-    double getInterestRate() const { return interestRate; }
+    void setTypeName(const std::string& value);
+    void setCurrency(const std::string& value);
+    void setInterestRate(double value);
 
-    // Setters
-    void setAccountTypeID(const std::string& id) { accountTypeID = id; }
-    void setTypeName(const std::string& name) { typeName = name; }
-    void setCurrency(const std::string& curr) { currency = curr; }
-    void setInterestRate(double rate) { interestRate = rate; }
-
-    // Chu?i xu?t ra file accounttypes.txt
-    std::string toString() const {
-        std::ostringstream oss;
-        oss << accountTypeID << ", " << typeName << ", " << currency << ", " << interestRate;
-        return oss.str();
-    }
+    std::string toString() const;
+    int compareTo(const AccountType& other) const;
 };
 
 #endif
