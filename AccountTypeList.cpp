@@ -10,32 +10,51 @@
 #include "AccountTypeList.h"
 #include <sstream>
 #include <stdexcept>
+#include "DataFile.h"
 
-namespace {
-std::string trim(const std::string& s) {
-    const auto first = s.find_first_not_of(" \t\r\n");
-    if (first == std::string::npos) return "";
-    const auto last = s.find_last_not_of(" \t\r\n");
-    return s.substr(first, last - first + 1);
-}
-}
 
+/*
+ * Ham: loadFromFile
+ * Chuc nang: Doc danh sach AccountType tu file. Dong sai dinh dang, truong rong,
+ *            lai suat khong phai so hoac <= 0, ma trung: bo qua va bao ro so dong.
+ * Tham so: filename - ten file (accounttypes.txt)
+ * Tra ve: false neu khong mo duoc file (file thieu), nguoc lai true
+ * Nguoi viet: K26DTCN019 - Nguyen Quoc Khanh
+ * Kiem tra loi nap file: K26DTCN100 - Vu Dang Khoi, 18/11/2026
+ * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
+ * Ngay duyet:
+ * Ket qua:
+ */
 bool AccountTypeList::loadFromFile(const std::string& filename) {
     std::ifstream in(filename);
-    if (!in) return false;
+    if (!in.is_open()) {
+        return false;
+    }
     accountTypes.clear();
     std::string line;
+    int lineNumber = 0;
     while (std::getline(in, line)) {
-        if (trim(line).empty() || trim(line)[0] == '#') continue;
-        std::stringstream ss(line);
-        std::string id, name, currency, rateText;
-        if (!std::getline(ss, id, '|') || !std::getline(ss, name, '|') ||
-            !std::getline(ss, currency, '|') || !std::getline(ss, rateText)) continue;
-        try {
-            accountTypes.emplace_back(trim(id), trim(name), trim(currency), std::stod(trim(rateText)));
-        } catch (...) {
-            std::cerr << "Bo qua dong account type khong hop le: " << line << '\n';
+        lineNumber++;
+        if (DataFile::isSkippableLine(line) || DataFile::isHeaderLine(line, "accountTypeID")) {
+            continue;
         }
+        std::vector<std::string> fields;
+        std::string error;
+        double rate = 0.0;
+        if (!DataFile::splitRecord(line, 4, fields, error)) {
+            // error da duoc splitRecord ghi
+        } else if (!DataFile::parseNumber(fields[3], rate)) {
+            error = "interestRate is not a number";
+        } else if (rate <= 0) {
+            error = "interestRate must be greater than 0";
+        } else if (searchID(fields[0]) >= 0) {
+            error = "duplicate accountTypeID " + fields[0];
+        } else {
+            accountTypes.emplace_back(fields[0], fields[1], fields[2], rate);
+            continue;
+        }
+        std::cerr << "Warning: " << filename << " line " << lineNumber
+                  << " skipped (" << error << "): " << line << '\n';
     }
     return true;
 }

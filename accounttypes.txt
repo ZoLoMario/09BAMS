@@ -1,4 +1,4 @@
-# accountTypeID | typeName | currency | interestRate
-AT01 | Savings | VND | 4.50
-AT02 | Current | VND | 0.00
-AT03 | Foreign Currency | USD | 1.25
+# accountTypeID, typeName, currency, interestRate
+T01, Savings, VND, 0.045
+T02, Checking, VND, 0.001
+T03, Student, VND, 0.015

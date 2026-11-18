@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = AccountType.o AccountTypeList.o BankAccount.o BankAccountList.o Menu.o main.o
-LINKOBJ  = AccountType.o AccountTypeList.o BankAccount.o BankAccountList.o Menu.o main.o
+OBJ      = AccountType.o AccountTypeList.o BankAccount.o BankAccountList.o Menu.o BankAccountManager.o main.o
+LINKOBJ  = AccountType.o AccountTypeList.o BankAccount.o BankAccountList.o Menu.o BankAccountManager.o main.o
 LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
@@ -38,6 +38,9 @@ BankAccountList.o: BankAccountList.cpp
 
 Menu.o: Menu.cpp
 	$(CPP) -c Menu.cpp -o Menu.o $(CXXFLAGS)
+
+BankAccountManager.o: BankAccountManager.cpp
+	$(CPP) -c BankAccountManager.cpp -o BankAccountManager.o $(CXXFLAGS)
 
 main.o: main.cpp
 	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
