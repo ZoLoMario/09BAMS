@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1239" height="1149" viewBox="0 0 1239 1149" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="12">
+<defs>
+<marker id="open" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1,1 L11,6 L1,11" fill="none" stroke="#333" stroke-width="1.4"/></marker>
+<marker id="diamond" viewBox="0 0 20 12" refX="19" refY="6" markerWidth="20" markerHeight="12" orient="auto-start-reverse"><path d="M1,6 L10,1 L19,6 L10,11 Z" fill="#333"/></marker>
+</defs>
+<rect width="1239" height="1149" fill="#ffffff"/>
+<text x="619.5" y="32" text-anchor="middle" font-size="18" font-weight="bold" font-family="DejaVu Sans, Arial">BankAccountPrj - UML Class Diagram (Nhom 7, Topic 09)</text>
+<rect x="200" y="80" width="479" height="256" fill="#fdfdf6" stroke="#333" stroke-width="1.4"/>
+<rect x="200" y="80" width="479" height="30" fill="#dae8fc" stroke="#333" stroke-width="1.4"/>
+<text x="439.5" y="100" text-anchor="middle" font-weight="bold" font-size="13">BankAccountManager</text>
+<text x="210" y="131">- accountTypeList: AccountTypeList</text>
+<text x="210" y="148">- bankAccountList: BankAccountList</text>
+<text x="210" y="165">- hasUnsavedTypes: bool</text>
+<text x="210" y="182">- hasUnsavedAccounts: bool</text>
+<line x1="200" y1="190" x2="679" y2="190" stroke="#333"/>
+<text x="210" y="207">+ BankAccountManager()</text>
+<text x="210" y="224">+ run(): int</text>
+<text x="210" y="241">- loadData(): void</text>
+<text x="210" y="258">- showMenu(): void</text>
+<text x="210" y="275">- handleChoice(choice: int): bool</text>
+<text x="210" y="292">- listAccountTypes() ... saveBankAccounts(): void  [CN 1-11]</text>
+<text x="210" y="309">- depositMoney() / withdrawMoney() / showYearlyInterest(): void</text>
+<text x="210" y="326">- confirmExit(): bool  [0 - Exit]</text>
+<rect x="759" y="120" width="370" height="103" fill="#fdfdf6" stroke="#333" stroke-width="1.4"/>
+<rect x="759" y="120" width="370" height="30" fill="#dae8fc" stroke="#333" stroke-width="1.4"/>
+<text x="944.0" y="140" text-anchor="middle" font-weight="bold" font-size="13">Menu</text>
+<line x1="759" y1="179" x2="1129" y2="179" stroke="#333"/>
+<text x="769" y="196">+ int_getChoice&lt;T&gt;(options: std::vector&lt;T&gt;): int</text>
+<text x="769" y="213">+ ref_getChoice&lt;T&gt;(options: std::vector&lt;T&gt;): T</text>
+<rect x="40" y="426" width="487" height="239" fill="#fdfdf6" stroke="#333" stroke-width="1.4"/>
+<rect x="40" y="426" width="487" height="30" fill="#dae8fc" stroke="#333" stroke-width="1.4"/>
+<text x="283.5" y="446" text-anchor="middle" font-weight="bold" font-size="13">AccountTypeList</text>
+<text x="50" y="477">- accountTypes: std::vector&lt;AccountType&gt;</text>
+<line x1="40" y1="485" x2="527" y2="485" stroke="#333"/>
+<text x="50" y="502">+ AccountTypeList()</text>
+<text x="50" y="519">+ loadFromFile(filename: std::string): bool</text>
+<text x="50" y="536">+ saveToFile(filename: std::string): bool</text>
+<text x="50" y="553">+ searchID(id: std::string): int</text>
+<text x="50" y="570">+ findByID(id: std::string): AccountType*</text>
+<text x="50" y="587">+ getUserChoice(): AccountType</text>
+<text x="50" y="604">+ addAccountType(type: AccountType): void</text>
+<text x="50" y="621">+ updateAccountType(id: std::string, updated: AccountType): bool</text>
+<text x="50" y="638">+ listAccountTypes(): void</text>
+<text x="50" y="655">+ getAll(): std::vector&lt;AccountType&gt;</text>
+<rect x="647" y="426" width="523" height="324" fill="#fdfdf6" stroke="#333" stroke-width="1.4"/>
+<rect x="647" y="426" width="523" height="30" fill="#dae8fc" stroke="#333" stroke-width="1.4"/>
+<text x="908.5" y="446" text-anchor="middle" font-weight="bold" font-size="13">BankAccountList</text>
+<text x="657" y="477">- bankAccounts: std::vector&lt;BankAccount&gt;</text>
+<text x="657" y="494">- accountTypeList: const AccountTypeList&amp;</text>
+<line x1="647" y1="502" x2="1170" y2="502" stroke="#333"/>
+<text x="657" y="519">+ BankAccountList(types: const AccountTypeList&amp;)</text>
+<text x="657" y="536">+ loadFromFile(filename: std::string): bool</text>
+<text x="657" y="553">+ saveToFile(filename: std::string): bool</text>
+<text x="657" y="570">+ searchID(id: std::string): int</text>
+<text x="657" y="587">+ findByID(id: std::string): BankAccount*</text>
+<text x="657" y="604">+ addBankAccount(account: BankAccount): void</text>
+<text x="657" y="621">+ removeBankAccount(id: std::string): bool</text>
+<text x="657" y="638">+ updateBankAccount(id: std::string, updated: BankAccount): bool</text>
+<text x="657" y="655">+ listBankAccounts(): void</text>
+<text x="657" y="672">+ printBasedAccountTypeName(keyword: std::string): void</text>
+<text x="657" y="689">+ deposit(id: std::string, amount: double): bool</text>
+<text x="657" y="706">+ withdraw(id: std::string, amount: double): bool</text>
+<text x="657" y="723">+ syncAccountType(oldTypeID: std::string, updated: AccountType): void</text>
+<text x="657" y="740">- sortAccounts(): void</text>
+<rect x="40" y="840" width="458" height="188" fill="#fdfdf6" stroke="#333" stroke-width="1.4"/>
+<rect x="40" y="840" width="458" height="30" fill="#dae8fc" stroke="#333" stroke-width="1.4"/>
+<text x="269.0" y="860" text-anchor="middle" font-weight="bold" font-size="13">AccountType</text>
+<text x="50" y="891">- accountTypeID: std::string</text>
+<text x="50" y="908">- typeName: std::string</text>
+<text x="50" y="925">- currency: std::string</text>
+<text x="50" y="942">- interestRate: double</text>
+<line x1="40" y1="950" x2="498" y2="950" stroke="#333"/>
+<text x="50" y="967">+ AccountType()</text>
+<text x="50" y="984">+ AccountType(std::string, std::string, std::string, double)</text>
+<text x="50" y="1001">+ getters / setters</text>
+<text x="50" y="1018">+ toString(): std::string</text>
+<rect x="647" y="840" width="552" height="239" fill="#fdfdf6" stroke="#333" stroke-width="1.4"/>
+<rect x="647" y="840" width="552" height="30" fill="#dae8fc" stroke="#333" stroke-width="1.4"/>
+<text x="923.0" y="860" text-anchor="middle" font-weight="bold" font-size="13">BankAccount</text>
+<text x="657" y="891">- accountID: std::string</text>
+<text x="657" y="908">- accountType: AccountType</text>
+<text x="657" y="925">- ownerName: std::string</text>
+<text x="657" y="942">- accountNumber: std::string</text>
+<text x="657" y="959">- balance: double</text>
+<line x1="647" y1="967" x2="1199" y2="967" stroke="#333"/>
+<text x="657" y="984">+ BankAccount()</text>
+<text x="657" y="1001">+ BankAccount(std::string, AccountType, std::string, std::string, double)</text>
+<text x="657" y="1018">+ getters / setters</text>
+<text x="657" y="1035">+ toString(): std::string</text>
+<text x="657" y="1052">+ screenString(): std::string</text>
+<text x="657" y="1069">+ operator&lt;(other: const BankAccount&amp;): bool</text>
+<path d="M319.75,336 L319.75,381.0 L319.75,381.0 L319.75,426" fill="none" stroke="#333" stroke-width="1.3" marker-start="url(#diamond)"/>
+<text x="329.75" y="354" text-anchor="start" font-size="11" fill="#a40000">1</text>
+<text x="329.75" y="416" text-anchor="start" font-size="11" fill="#a40000">1</text>
+<path d="M559.25,336 L559.25,381.0 L803.9,381.0 L803.9,426" fill="none" stroke="#333" stroke-width="1.3" marker-start="url(#diamond)"/>
+<text x="569.25" y="354" text-anchor="start" font-size="11" fill="#a40000">1</text>
+<text x="813.9" y="416" text-anchor="start" font-size="11" fill="#a40000">1</text>
+<path d="M679,171.5 L719.0,171.5 L719.0,171.5 L759,171.5" fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#open)" stroke-dasharray="6,4"/>
+<text x="719.0" y="187.5" text-anchor="middle" font-size="11" font-style="italic" fill="#555">&lt;&lt;use&gt;&gt;</text>
+<path d="M283.5,665 L283.5,752.5 L283.5,752.5 L283.5,840" fill="none" stroke="#333" stroke-width="1.3" marker-start="url(#diamond)"/>
+<text x="293.5" y="683" text-anchor="start" font-size="11" fill="#a40000">1</text>
+<text x="293.5" y="830" text-anchor="start" font-size="11" fill="#a40000">0..*</text>
+<text x="283.5" y="746.5" text-anchor="middle" font-size="11" font-style="italic" fill="#555">quan ly vector</text>
+<path d="M908.5,750 L908.5,795.0 L908.5,795.0 L908.5,840" fill="none" stroke="#333" stroke-width="1.3" marker-start="url(#diamond)"/>
+<text x="918.5" y="768" text-anchor="start" font-size="11" fill="#a40000">1</text>
+<text x="918.5" y="830" text-anchor="start" font-size="11" fill="#a40000">0..*</text>
+<text x="908.5" y="789.0" text-anchor="middle" font-size="11" font-style="italic" fill="#555">quan ly vector</text>
+<path d="M647,545.5 L587.0,545.5 L587.0,545.5 L527,545.5" fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#open)"/>
+<text x="543" y="535.5" text-anchor="start" font-size="11" fill="#a40000">1</text>
+<text x="587.0" y="561.5" text-anchor="middle" font-size="11" font-style="italic" fill="#555">tham chieu</text>
+<path d="M647,934.0 L572.5,934.0 L572.5,934.0 L498,934.0" fill="none" stroke="#333" stroke-width="1.3" marker-end="url(#open)"/>
+<text x="631" y="924.0" text-anchor="end" font-size="11" fill="#a40000">0..*</text>
+<text x="514" y="924.0" text-anchor="start" font-size="11" fill="#a40000">1</text>
+<text x="572.5" y="950.0" text-anchor="middle" font-size="11" font-style="italic" fill="#555">thuoc loai</text>
+<text x="40" y="1127" font-size="11" fill="#555" font-family="DejaVu Sans, Arial">- private  + public  |  hinh thoi den: thanh phan (quan ly vector)  |  mui ten: lien ket (association)  |  net dut: phu thuoc &lt;&lt;use&gt;&gt;  |  main() tao BankAccountManager va goi run()</text>
+</svg>
