@@ -1,4 +1,5 @@
-# accountID | accountTypeID | ownerName | accountNumber | balance
-BA003 | AT02 | Tran Thi B | 10000003 | 2500000
-BA001 | AT01 | Nguyen Van A | 10000001 | 5000000
-BA002 | AT01 | Le Van C | 10000002 | 7500000
+# accountID, accountType, ownerName, accountNumber, balance
+A01, T01, Nguyen An, AC10001, 12000000
+A02, T02, Tran Binh, AC10002, 3000000
+A03, T03, Le Chi, AC10003, 800000
+A04, T01, Pham Dung, AC10004, 5000000

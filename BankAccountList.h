@@ -24,6 +24,11 @@ public:
     void addBankAccount(const BankAccount& account);
     bool removeBankAccount(const std::string& id);
     bool updateBankAccount(const std::string& id, const BankAccount& updated);
+    const BankAccount* findByID(const std::string& id) const;
+    bool deposit(const std::string& id, double amount);
+    bool withdraw(const std::string& id, double amount);
+    const std::vector<BankAccount>& getAll() const;
+    void syncAccountType(const std::string& oldTypeID, const AccountType& updated);
     void listBankAccounts() const;
     void printBasedAccountTypeName(const std::string& typeName) const;
 };
