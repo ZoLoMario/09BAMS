@@ -7,10 +7,12 @@
 #include "BankAccountList.h"
 #include <algorithm>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 #include "DataFile.h"
+#include "Utils.h"
 
 BankAccountList::BankAccountList(const AccountTypeList& types) : accountTypeList(types) {}
 
@@ -71,14 +73,31 @@ bool BankAccountList::loadFromFile(const std::string& filename) {
     return true;
 }
 
+/*
+ * Ham: saveToFile (CN 11)
+ * Chuc nang: Ghi danh sach BankAccount ra file: dong tieu de '#', cac truong cach nhau
+ *            boi ", " (cung dinh dang accounttypes.txt va de bai). So du ghi dang thuong
+ *            2 chu so thap phan, khong ghi dang 1.2e+07 va khong mat chu so.
+ * Tham so: filename - ten file (bankaccounts.txt)
+ * Tra ve: false neu khong mo duoc file hoac ghi loi, nguoc lai true
+ * Nguoi viet: K26DTCN008 - Nguyen Thanh Dat
+ * Ngay viet: 22/11/2026
+ * Nguoi duyet: K26DTCN107 - Nguyen Thanh Phong
+ * Ngay duyet:
+ * Ket qua:
+ */
 bool BankAccountList::saveToFile(const std::string& filename) const {
     std::ofstream out(filename);
     if (!out) return false;
+    out << "# accountID, accountType, ownerName, accountNumber, balance\n"
+        << std::fixed << std::setprecision(2);
+    // Luu y: truong co dau ',' (chi co the den tu file '|' sua tay) se loi khi nap lai
     for (const auto& a : bankAccounts)
-        out << a.getAccountID() << " | " << a.getAccountType().getAccountTypeID()
-            << " | " << a.getOwnerName() << " | " << a.getAccountNumber()
-            << " | " << a.getBalance() << '\n';
-    return true;
+        out << a.getAccountID() << ", " << a.getAccountType().getAccountTypeID()
+            << ", " << a.getOwnerName() << ", " << a.getAccountNumber()
+            << ", " << a.getBalance() << '\n';
+    out.flush();
+    return static_cast<bool>(out);
 }
 
 int BankAccountList::searchID(const std::string& id) const {
@@ -245,7 +264,25 @@ void BankAccountList::listBankAccounts() const {
     for (const auto& a : bankAccounts) std::cout << a.toString() << '\n';
 }
 
+/*
+ * Ham: printBasedAccountTypeName (CN 7)
+ * Chuc nang: In cac BankAccount co typeName CHUA chuoi can tim (mot phan, khong phan
+ *            biet hoa/thuong); khong co ket qua thi in thong bao.
+ * Tham so: typeName - chuoi can tim (mot phan cua typeName)
+ * Nguoi viet: K26DTCN008 - Nguyen Thanh Dat
+ * Ngay viet: 22/11/2026
+ * Nguoi duyet: K26DTCN107 - Nguyen Thanh Phong
+ * Ngay duyet:
+ * Ket qua:
+ */
 void BankAccountList::printBasedAccountTypeName(const std::string& typeName) const {
-    for (const auto& a : bankAccounts)
-        if (a.getAccountType().getTypeName() == typeName) std::cout << a.toString() << '\n';
+    const std::string keyword = Utils::toLower(Utils::trim(typeName));
+    int found = 0;
+    for (const auto& a : bankAccounts) {
+        if (Utils::toLower(a.getAccountType().getTypeName()).find(keyword) != std::string::npos) {
+            std::cout << a.toString() << '\n';
+            found++;
+        }
+    }
+    if (found == 0) std::cout << "No BankAccount matches \"" << typeName << "\".\n";
 }
