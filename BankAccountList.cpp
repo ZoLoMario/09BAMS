@@ -6,17 +6,28 @@
  */
 #include "BankAccountList.h"
 #include <algorithm>
+#include <cmath>
 #include <fstream>
 #include <iostream>
-#include <sstream>
 #include <stdexcept>
 #include "DataFile.h"
 
 BankAccountList::BankAccountList(const AccountTypeList& types) : accountTypeList(types) {}
 
+/*
+ * Ham: sortAccounts
+ * Chuc nang: Sap xep danh sach theo typeName, trung thi theo accountID
+ *            (dung BankAccount::operator< + std::sort)
+ * Tham so: khong
+ * Tra ve: khong
+ * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
+ * Ngay viet: 23/11/2026
+ * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
+ * Ngay duyet:
+ * Ket qua:
+ */
 void BankAccountList::sortAccounts() {
-    std::sort(bankAccounts.begin(), bankAccounts.end(),
-        [](const BankAccount& a, const BankAccount& b) { return a.compareTo(b) < 0; });
+    std::sort(bankAccounts.begin(), bankAccounts.end());
 }
 
 /*
