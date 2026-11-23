@@ -1,10 +1,15 @@
 /*
  * File: BankAccount.h
- * Mo ta: Quan ly danh sach AccountType (doc/ghi file, them, sua, tim)
- * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Mo ta: Khai bao class BankAccount - mot tai khoan ngan hang, lien ket toi mot AccountType.
+ *        Sap xep theo typeName, trung thi theo accountID (operator<).
+ * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong (khung .h: K26DTCN089 - Vu Trong Hanh)
  * Ngay viet: 17/11/2026
+ * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
+ * Ngay duyet:
  */
-#pragma once
+#ifndef BANK_ACCOUNT_H
+#define BANK_ACCOUNT_H
+
 #include "AccountType.h"
 #include <string>
 
@@ -18,8 +23,8 @@ private:
 
 public:
     BankAccount() = default;
-    BankAccount(std::string id, const AccountType& type, std::string owner,
-                std::string number, double amount);
+    BankAccount(const std::string& id, const AccountType& type, const std::string& owner,
+                const std::string& number, double amount);
 
     const std::string& getAccountID() const;
     const AccountType& getAccountType() const;
@@ -33,6 +38,11 @@ public:
     void setBalance(double value);
 
     std::string toString() const;
+    std::string screenString() const;
+    static std::string screenHeader();
     int compareTo(const BankAccount& other) const;
+    bool operator<(const BankAccount& other) const;
     bool operator==(const BankAccount& other) const;
 };
+
+#endif

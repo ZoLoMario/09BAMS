@@ -54,7 +54,8 @@ bool BankAccountList::loadFromFile(const std::string& filename) {
             // error da duoc splitRecord ghi
         } else if ((type = accountTypeList.findByID(fields[1])) == nullptr) {
             error = "accountType " + fields[1] + " does not exist";
-        } else if (!DataFile::parseNumber(fields[4], balance)) {
+        } else if (!DataFile::parseNumber(fields[4], balance) || !std::isfinite(balance)) {
+            // std::stod doc duoc "nan"/"inf"; nan < 0 la false nen phai chan rieng
             error = "balance is not a number";
         } else if (balance < 0) {
             error = "balance must not be negative";
