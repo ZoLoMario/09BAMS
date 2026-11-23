@@ -30,8 +30,8 @@ void BankAccountList::sortAccounts() {
  * Kiem tra loi nap file: K26DTCN100 - Vu Dang Khoi, 18/11/2026
  *   (thay trimAccount cu: chuoi " \\t\\r\\n" cat nham chu t/r/n cuoi ten)
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 bool BankAccountList::loadFromFile(const std::string& filename) {
     std::ifstream in(filename);
@@ -113,8 +113,8 @@ bool BankAccountList::removeBankAccount(const std::string& id) {
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 bool BankAccountList::updateBankAccount(const std::string& id, const BankAccount& updated) {
     const int index = searchID(id);
@@ -147,8 +147,8 @@ bool BankAccountList::updateBankAccount(const std::string& id, const BankAccount
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 const BankAccount* BankAccountList::findByID(const std::string& id) const {
     const int index = searchID(id);
@@ -163,8 +163,8 @@ const BankAccount* BankAccountList::findByID(const std::string& id) const {
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 bool BankAccountList::deposit(const std::string& id, double amount) {
     const int index = searchID(id);
@@ -187,8 +187,8 @@ bool BankAccountList::deposit(const std::string& id, double amount) {
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 bool BankAccountList::withdraw(const std::string& id, double amount) {
     const int index = searchID(id);
@@ -212,8 +212,8 @@ bool BankAccountList::withdraw(const std::string& id, double amount) {
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 const std::vector<BankAccount>& BankAccountList::getAll() const {
     return bankAccounts;
@@ -229,8 +229,8 @@ const std::vector<BankAccount>& BankAccountList::getAll() const {
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 void BankAccountList::syncAccountType(const std::string& oldTypeID, const AccountType& updated) {
     for (std::size_t i = 0; i < bankAccounts.size(); i++) {

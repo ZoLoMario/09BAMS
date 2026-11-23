@@ -6,7 +6,7 @@
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
+ * Ngay duyet:23/11/2026
  */
 #ifndef DATA_FILE_H
 #define DATA_FILE_H
@@ -25,8 +25,8 @@ namespace DataFile {
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 inline std::string trim(const std::string& text) {
     const char* SPACES = " \t\r\n";
@@ -46,8 +46,8 @@ inline std::string trim(const std::string& text) {
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 inline bool isSkippableLine(const std::string& line) {
     const std::string content = trim(line);
@@ -62,8 +62,8 @@ inline bool isSkippableLine(const std::string& line) {
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 inline bool isHeaderLine(const std::string& line, const std::string& firstFieldName) {
     return trim(line).compare(0, firstFieldName.size(), firstFieldName) == 0;
@@ -79,8 +79,8 @@ inline bool isHeaderLine(const std::string& line, const std::string& firstFieldN
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 inline bool splitRecord(const std::string& line, std::size_t expectedCount,
                         std::vector<std::string>& fields, std::string& error) {
@@ -116,8 +116,8 @@ inline bool splitRecord(const std::string& line, std::size_t expectedCount,
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 inline bool parseNumber(const std::string& text, double& value) {
     try {

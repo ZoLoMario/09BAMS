@@ -4,11 +4,11 @@
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
+ * Ngay duyet: 23/11/2026
  *
  * Ghi chu chung cho cac ham trong file (de khong lap lai o tung ham):
  *   Nguoi viet: K26DTCN100 - Vu Dang Khoi | Ngay viet: 18/11/2026
- *   Nguoi duyet: K26DTCN028 - Ngo Dinh Tai | Ngay duyet: | Ket qua:
+ *   Nguoi duyet: K26DTCN028 - Ngo Dinh Tai | Ngay duyet: 23/11/2026 | Ket qua: Hoan thanh
  *   Cac ham CN 2-9, 11 chi lo NHAP LIEU + THONG BAO; xu ly du lieu nam trong
  *   AccountTypeList / BankAccountList do thanh vien phu trach CN do viet.
  */

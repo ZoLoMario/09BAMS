@@ -22,8 +22,8 @@
  * Nguoi viet: K26DTCN019 - Nguyen Quoc Khanh
  * Kiem tra loi nap file: K26DTCN100 - Vu Dang Khoi, 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet:23/11/2026
+ * Ket qua:Hoan thanh
  */
 bool AccountTypeList::loadFromFile(const std::string& filename) {
     std::ifstream in(filename);

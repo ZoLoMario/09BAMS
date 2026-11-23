@@ -4,7 +4,7 @@
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
  * Ngay viet: 18/11/2026
  * Nguoi duyet: K26DTCN028 - Ngo Dinh Tai
- * Ngay duyet:
+ * Ngay duyet:23/11/2026
  */
 #include "BankAccountManager.h"
 
