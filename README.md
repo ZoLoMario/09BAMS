@@ -95,9 +95,11 @@ Khi nạp tệp, dòng sai định dạng, dòng có số không hợp lệ, mã
 | `BankAccountList.h/.cpp` | `BankAccountList` | `std::vector<BankAccount>` sắp xếp theo typeName rồi accountID: đọc/ghi tệp, tìm, thêm, xoá, sửa |
 | `Menu.h/.cpp`, `Utils.h` | `Menu` | Hiển thị lựa chọn, nhập liệu an toàn |
 | `DataFile.h` | | Tách dòng dữ liệu và kiểm tra lỗi khi nạp tệp |
-| `docs/` | | UML Class Diagram (`.png`, `.drawio`, `.svg`) |
+| `docs/` | | UML Class Diagram của Hanh (`.png`); bản nháp của Khôi trong `docs/ban-nhap-khoi/` |
 
 ![UML Class Diagram](docs/Nhom_7_UML_Class_Diagram.png)
+
+*UML Class Diagram – Vũ Trọng Hanh (K26DTCN089), gửi nhóm ngày 19/11/2026.*
 
 ## Thành viên
 
@@ -121,7 +123,7 @@ Giảng viên hướng dẫn: Mai Ngọc Lương.
 | [`tai-lieu/ke-hoach/`](tai-lieu/ke-hoach/) | Kế hoạch và yêu cầu từng giai đoạn, quy chuẩn code (`Nhom_7_Ke_hoach_Yeu_cau_Giai_doan.docx`), `Nhom_7_Plan.xlsx` |
 | [`tai-lieu/phan-tich/`](tai-lieu/phan-tich/) | Tài liệu phân tích yêu cầu (GĐ1) |
 | [`tai-lieu/bieu-mau/`](tai-lieu/bieu-mau/) | Mẫu phiếu báo cáo tiến độ, biên bản họp, báo cáo, slide |
-| [`docs/`](docs/) | UML Class Diagram (`.png` để chèn báo cáo, `.drawio` để sửa bằng [app.diagrams.net](https://app.diagrams.net)) |
+| [`docs/`](docs/) | UML Class Diagram của Hanh (`.png` để chèn báo cáo). Bản nháp của Khôi (`.png`, `.drawio`, `.svg`) ở [`docs/ban-nhap-khoi/`](docs/ban-nhap-khoi/) |
 | [`TIEN-DO.md`](TIEN-DO.md) | Bảng theo dõi tiến độ của cả nhóm |
 
 Bản đang soạn của báo cáo, slide và biên bản vẫn để trên **Google Drive của nhóm** cho mọi người cùng sửa. Thư mục `tai-lieu/` chỉ chứa bản chụp lại để tra cứu nhanh; khi có bản chốt thì đẩy bản mới lên thay.

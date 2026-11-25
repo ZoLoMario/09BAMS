@@ -1,5 +1,6 @@
 """Sinh UML Class Diagram (draw.io + SVG) cho BankAccountPrj tu mot mo hinh duy nhat.
-Chay: python3 docs/uml_gen.py  -> docs/Nhom_7_UML_Class_Diagram.drawio / .svg
+Ban nhap cua Khoi (18/11). UML chinh thuc la cua Hanh: docs/Nhom_7_UML_Class_Diagram.png
+Chay: python3 docs/ban-nhap-khoi/uml_gen.py  -> docs/ban-nhap-khoi/Nhom_7_UML_Class_Diagram.drawio / .svg
 """
 import html, os
 OUT = os.path.dirname(os.path.abspath(__file__))

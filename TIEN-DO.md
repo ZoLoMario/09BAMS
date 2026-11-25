@@ -22,7 +22,7 @@
 | # | Việc | Người làm | Duyệt | Hạn | Trạng thái | Sản phẩm / ghi chú |
 |---|---|---|---|---|---|---|
 | 1.1 | Phân tích 11 chức năng, ràng buộc, giả mã | Hanh | Phong | 13/11 | 🔄 | Bản đầu: Drive `1.Document/Nhom_7_Phan_tich_yeu_cau_Hanh.docx`. Đang rà lại theo menu 11 chức năng của đề |
-| 2.1 | UML Class Diagram 6 class | Hanh | Phong | 14/11 | 👀 | Bản nháp: [`docs/`](docs/) (`.png`, `.drawio`) |
+| 2.1 | UML Class Diagram 6 class | Hanh | Phong | 14/11 | 👀 | Hanh gửi nhóm Zalo 19/11, đã đưa vào [`docs/Nhom_7_UML_Class_Diagram.png`](docs/Nhom_7_UML_Class_Diagram.png). Chờ Phong duyệt |
 | 2.2 | Chốt chữ ký hàm, file `.h` | Hanh | | 15/11 | ✅ | Có trên `main` |
 | 2.3 | `accounttypes.txt`, `bankaccounts.txt` | Trung | | 15/11 | 👀 | Trên `main` đã dùng dữ liệu mẫu của đề (PR #1), chờ Trung xác nhận |
 | 2.4 | Repo GitHub | Khôi | | 15/11 | ✅ | Đủ 7 thành viên |
