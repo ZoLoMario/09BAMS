@@ -5,7 +5,8 @@
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong (khung .h: K26DTCN089 - Vu Trong Hanh)
  * Ngay viet: 17/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
  */
 #ifndef BANK_ACCOUNT_H
 #define BANK_ACCOUNT_H

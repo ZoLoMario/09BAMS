@@ -82,9 +82,9 @@
 | Test | Nội dung | Người chạy | Trạng thái |
 |---|---|---|---|
 | 01 | Nạp và hiển thị 3 AccountType | Khánh | 🔄 đã viết test case ([tests/TEST-CASE-CN1-CN5.md](tests/TEST-CASE-CN1-CN5.md)), chưa điền kết quả |
-| 02 | Thêm AccountType: mã trùng, tên rỗng, số sai | Hanh | ⏳ |
-| 03 | Tìm AccountType: ID có / không có | Hanh | ⏳ |
-| 04 | Sửa AccountType, xác nhận dữ liệu | Hanh | ⏳ |
+| 02 | Thêm AccountType: mã trùng, tên rỗng, số sai | Hanh | ✅ 3/3 (Khôi chạy hộ 25/11): [tests/TEST-CASE-CN2-CN4.md](tests/TEST-CASE-CN2-CN4.md). Còn ảnh Dev-C++ |
+| 03 | Tìm AccountType: ID có / không có | Hanh | ✅ 3/3 (Khôi chạy hộ 25/11). Còn ảnh Dev-C++ |
+| 04 | Sửa AccountType, xác nhận dữ liệu | Hanh | ✅ 3/3 (Khôi chạy hộ 25/11). Còn ảnh Dev-C++ |
 | 05 | Lưu accounttypes.txt, mở lại đối chiếu | Khánh | 🔄 đã viết test case, chưa điền kết quả |
 | 06 | Sắp xếp theo typeName rồi ID (có typeName trùng) | Phong | ⏳ |
 | 07 | Tìm theo một phần typeName: có / không có kết quả | Đạt | ⏳ |
@@ -112,4 +112,5 @@
 |---|---|---|
 | 18/11 | Khôi | Tạo bảng tiến độ |
 | 18/11 | Khôi | Gộp PR #1 vào `main`: 3.6, 3.7, 3.8, CN 3/5/10/0, Test 10, Test 12 (file) xong |
+| 25/11 | Khôi | Hỗ trợ Hanh (Hanh bận, đã xin phép): sửa CN 2–4 (`searchID` không phân biệt hoa/thường, thông báo tiếng Anh, comment đầu hàm); Test 02–04 9/9 đạt; review code Phong thay Hanh (`BankAccount.cpp/.h`, `sortAccounts`: Đạt) |
 | 25/11 | Khôi | Chạy lại Test 10, Test 12 (file) và Exit trên `main` `1ece4c0`: 10/10 đạt, đưa bảng lên `tests/TEST-CASE-CN10-CN12.md` |

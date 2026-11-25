@@ -209,8 +209,10 @@ void BankAccountManager::updateAccountType() {
         return;
     }
     std::cout << "Current: " << current->toString() << '\n';
+    // Ma dang luu (vd "T01"): nguoi dung co the go "t01" vi searchID khong phan biet hoa/thuong
+    const std::string storedId = current->getAccountTypeID();
     std::string newId = inputField("Enter new accountTypeID: ");
-    while (newId != oldId && accountTypeList.searchID(newId) >= 0) {
+    while (accountTypeList.searchID(newId) >= 0 && accountTypeList.findByID(newId) != current) {
         std::cout << "[Error] ID already exists. Please try again.\n";
         newId = inputField("Enter new accountTypeID: ");
     }
@@ -222,7 +224,7 @@ void BankAccountManager::updateAccountType() {
         std::cout << "Error: update failed.\n";
         return;
     }
-    bankAccountList.syncAccountType(oldId, updated);
+    bankAccountList.syncAccountType(storedId, updated);
     hasUnsavedTypes = true;
     hasUnsavedAccounts = true;
     std::cout << "AccountType updated.\n";
