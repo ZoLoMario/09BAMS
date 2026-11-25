@@ -163,7 +163,7 @@ AccountType BankAccountManager::chooseAccountType() const {
 
 /* Ham: listAccountTypes (CN 1) - Chuc nang: hien toan bo AccountType */
 void BankAccountManager::listAccountTypes() const {
-    std::cout << "\n--- ACCOUNT TYPES (ID | typeName | currency | interestRate) ---\n";
+    std::cout << "\n--- ACCOUNT TYPES ---\n";
     accountTypeList.listAccountTypes();
 }
 

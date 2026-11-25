@@ -59,13 +59,27 @@ bool AccountTypeList::loadFromFile(const std::string& filename) {
     return true;
 }
 
+/*
+ * Ham: saveToFile (CN 5)
+ * Chuc nang: Ghi toan bo danh sach AccountType ra file theo dinh dang cua de bai
+ *            (dau ','), dong dau la dong chu thich ten cot (loadFromFile bo qua
+ *            dong bat dau bang '#'). Dung ofstream (RAII) nen file tu dong dong.
+ * Tham so: filename - ten file (accounttypes.txt)
+ * Tra ve: false neu khong mo duoc file hoac ghi loi, nguoc lai true
+ * Nguoi viet: K26DTCN019 - Nguyen Quoc Khanh
+ * Ngay viet: 20/11/2026
+ * Nguoi duyet: K26DTCN115 - Luong Duc Trung
+ * Ngay duyet:
+ * Ket qua:
+ */
 bool AccountTypeList::saveToFile(const std::string& filename) const {
     std::ofstream out(filename);
-    if (!out) return false;
+    if (!out.is_open()) return false;
+    out << "# accountTypeID, typeName, currency, interestRate\n";
     for (const auto& t : accountTypes)
-        out << t.getAccountTypeID() << " | " << t.getTypeName() << " | "
-            << t.getCurrency() << " | " << t.getInterestRate() << '\n';
-    return true;
+        out << t.toString() << '\n';
+    //Kiem tra trang thai luong sau khi ghi (vd o dia day)
+    return static_cast<bool>(out);
 }
 
 int AccountTypeList::searchID(const std::string& id) const {
@@ -109,7 +123,33 @@ bool AccountTypeList::updateAccountType(const std::string& id, const AccountType
     return true;
 }
 
+/*
+ * Ham: listAccountTypes (CN 1)
+ * Chuc nang: Hien thi toan bo danh muc AccountType dang bang (tieu de, tung dong,
+ *            tong so). Danh sach rong thi bao "Danh sach AccountType trong!".
+ *            Ham nay cung duoc getUserChoice dung khi chon loai tai khoan.
+ * Tham so: khong
+ * Tra ve: khong
+ * Nguoi viet: K26DTCN019 - Nguyen Quoc Khanh
+ * Ngay viet: 20/11/2026
+ * Nguoi duyet: K26DTCN115 - Luong Duc Trung
+ * Ngay duyet:
+ * Ket qua:
+ */
 void AccountTypeList::listAccountTypes() const {
-    for (const auto& t : accountTypes) std::cout << t.toString() << '\n';
+    if (accountTypes.empty()) {
+        std::cout << "Danh sach AccountType trong!\n";
+        return;
+    }
+    const std::string border =
+        "+----------+-----------------+----------+--------------+----------+";
+    std::cout << border << '\n'
+              << "| TypeID   | TypeName        | Currency | InterestRate |  Rate(%) |\n"
+              << border << '\n';
+    for (const auto& t : accountTypes)
+        std::cout << t.screenString() << '\n';
+    std::cout << border << '\n'
+              << "Tong so: " << accountTypes.size() << " AccountType.\n";
 }
+
 const std::vector<AccountType>& AccountTypeList::getAll() const { return accountTypes; }
