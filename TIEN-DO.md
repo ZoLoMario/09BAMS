@@ -81,18 +81,18 @@
 
 | Test | Nội dung | Người chạy | Trạng thái |
 |---|---|---|---|
-| 01 | Nạp và hiển thị 3 AccountType | Khánh | ⏳ |
+| 01 | Nạp và hiển thị 3 AccountType | Khánh | 🔄 đã viết test case ([tests/TEST-CASE-CN1-CN5.md](tests/TEST-CASE-CN1-CN5.md)), chưa điền kết quả |
 | 02 | Thêm AccountType: mã trùng, tên rỗng, số sai | Hanh | ⏳ |
 | 03 | Tìm AccountType: ID có / không có | Hanh | ⏳ |
 | 04 | Sửa AccountType, xác nhận dữ liệu | Hanh | ⏳ |
-| 05 | Lưu accounttypes.txt, mở lại đối chiếu | Khánh | ⏳ |
+| 05 | Lưu accounttypes.txt, mở lại đối chiếu | Khánh | 🔄 đã viết test case, chưa điền kết quả |
 | 06 | Sắp xếp theo typeName rồi ID (có typeName trùng) | Phong | ⏳ |
 | 07 | Tìm theo một phần typeName: có / không có kết quả | Đạt | ⏳ |
 | 08 | Thêm BankAccount: mã trùng, tham chiếu sai | Tài | ⏳ |
 | 09 | Xoá BankAccount: ID có / không có | Tài | ⏳ |
-| 10 | Cập nhật BankAccount: hợp lệ / không hợp lệ | Khôi | ✅ |
+| 10 | Cập nhật BankAccount: hợp lệ / không hợp lệ | Khôi | ✅ 6/6, chạy lại 25/11 trên `main`: [tests/TEST-CASE-CN10-CN12.md](tests/TEST-CASE-CN10-CN12.md). Còn chụp ảnh Dev-C++ |
 | 11 | Lưu bankaccounts.txt, chạy lại, kiểm tra | Đạt | ⏳ |
-| 12 | Tệp thiếu, dòng sai định dạng | Khôi | ✅ |
+| 12 | Tệp thiếu, dòng sai định dạng | Khôi | ✅ 2/2 (cùng file trên). Còn chụp ảnh Dev-C++ |
 | 12 | Menu nhập chữ thay vì số | Trung | ⏳ |
 
 ## Checklist nộp bài (29/11)
@@ -112,3 +112,4 @@
 |---|---|---|
 | 18/11 | Khôi | Tạo bảng tiến độ |
 | 18/11 | Khôi | Gộp PR #1 vào `main`: 3.6, 3.7, 3.8, CN 3/5/10/0, Test 10, Test 12 (file) xong |
+| 25/11 | Khôi | Chạy lại Test 10, Test 12 (file) và Exit trên `main` `1ece4c0`: 10/10 đạt, đưa bảng lên `tests/TEST-CASE-CN10-CN12.md` |
