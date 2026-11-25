@@ -4,7 +4,10 @@
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 17/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat. Gop y: dong "Mo ta" o tren nen la "Cai dat lop BankAccount - mot
+ *   tai khoan"; screenString/screenHeader chua duoc listBankAccounts (CN 6) goi.
  */
 #include "BankAccount.h"
 #include "Utils.h"
@@ -27,8 +30,9 @@ const int BALANCE_WIDTH = 18;
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 17/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 BankAccount::BankAccount(const std::string& id, const AccountType& type,
                          const std::string& owner, const std::string& number, double amount)
@@ -43,8 +47,9 @@ BankAccount::BankAccount(const std::string& id, const AccountType& type,
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 17/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 const std::string& BankAccount::getAccountID() const { return accountID; }
 const AccountType& BankAccount::getAccountType() const { return accountType; }
@@ -61,8 +66,9 @@ double BankAccount::getBalance() const { return balance; }
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 17/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 void BankAccount::setAccountType(const AccountType& value) { accountType = value; }
 void BankAccount::setOwnerName(const std::string& value) { ownerName = value; }
@@ -78,8 +84,9 @@ void BankAccount::setBalance(double value) { balance = value; }
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 17/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 std::string BankAccount::toString() const {
     std::ostringstream out;
@@ -97,8 +104,9 @@ std::string BankAccount::toString() const {
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 23/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 std::string BankAccount::screenString() const {
     std::ostringstream out;
@@ -120,8 +128,9 @@ std::string BankAccount::screenString() const {
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 23/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 std::string BankAccount::screenHeader() {
     std::ostringstream out;
@@ -143,8 +152,9 @@ std::string BankAccount::screenHeader() {
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 17/11/2026; 23/11/2026 doi sang khong phan biet hoa/thuong
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 int BankAccount::compareTo(const BankAccount& other) const {
     const std::string typeName = Utils::toLower(accountType.getTypeName());
@@ -164,8 +174,9 @@ int BankAccount::compareTo(const BankAccount& other) const {
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 23/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 bool BankAccount::operator<(const BankAccount& other) const {
     return compareTo(other) < 0;
@@ -179,8 +190,9 @@ bool BankAccount::operator<(const BankAccount& other) const {
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 17/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 bool BankAccount::operator==(const BankAccount& other) const {
     return Utils::toLower(accountID) == Utils::toLower(other.accountID);

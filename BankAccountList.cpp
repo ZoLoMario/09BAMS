@@ -25,8 +25,9 @@ BankAccountList::BankAccountList(const AccountTypeList& types) : accountTypeList
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay viet: 23/11/2026
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
- * Ngay duyet:
- * Ket qua:
+ *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
+ * Ngay duyet: 25/11/2026
+ * Ket qua: Dat
  */
 void BankAccountList::sortAccounts() {
     std::sort(bankAccounts.begin(), bankAccounts.end());

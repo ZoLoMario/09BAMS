@@ -11,6 +11,7 @@
 #include <sstream>
 #include <stdexcept>
 #include "DataFile.h"
+#include "Utils.h"
 
 
 /*
@@ -82,12 +83,41 @@ bool AccountTypeList::saveToFile(const std::string& filename) const {
     return static_cast<bool>(out);
 }
 
+/*
+ * Ham: searchID (CN 3)
+ * Chuc nang: Tim vi tri AccountType theo ma, KHONG phan biet hoa/thuong
+ *            (nhap "t01" van tim ra "T01")
+ * Tham so: id - ma can tim
+ * Tra ve: vi tri trong danh sach; -1 neu khong co
+ * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Ngay viet: 16/11/2026
+ * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
+ * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
+ * Ngay duyet:
+ * Ket qua:
+ */
 int AccountTypeList::searchID(const std::string& id) const {
-    for (std::size_t i = 0; i < accountTypes.size(); ++i)
-        if (accountTypes[i].getAccountTypeID() == id) return static_cast<int>(i);
+    const std::string key = Utils::toLower(Utils::trim(id));
+    for (std::size_t i = 0; i < accountTypes.size(); ++i) {
+        if (Utils::toLower(accountTypes[i].getAccountTypeID()) == key) {
+            return static_cast<int>(i);
+        }
+    }
     return -1;
 }
 
+/*
+ * Ham: findByID (CN 3, CN 4)
+ * Chuc nang: Tra con tro toi AccountType co ma id (dung searchID)
+ * Tham so: id - ma can tim
+ * Tra ve: con tro; nullptr neu khong co
+ * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Ngay viet: 16/11/2026
+ * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
+ * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
+ * Ngay duyet:
+ * Ket qua:
+ */
 AccountType* AccountTypeList::findByID(const std::string& id) {
     const int i = searchID(id);
     return i < 0 ? nullptr : &accountTypes[static_cast<std::size_t>(i)];
@@ -97,28 +127,75 @@ const AccountType* AccountTypeList::findByID(const std::string& id) const {
     return i < 0 ? nullptr : &accountTypes[static_cast<std::size_t>(i)];
 }
 
+/*
+ * Ham: getUserChoice (dung cho CN 8, CN 10)
+ * Chuc nang: Hien bang AccountType, cho nguoi dung nhap ma loai de chon
+ * Tham so: khong
+ * Tra ve: AccountType da chon; nem std::runtime_error neu danh sach rong
+ *         hoac ma khong ton tai (BankAccountManager bat loi va cho chon lai)
+ * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Ngay viet: 16/11/2026
+ * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
+ * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
+ * Ngay duyet:
+ * Ket qua:
+ */
 AccountType AccountTypeList::getUserChoice() const {
-    if (accountTypes.empty()) throw std::runtime_error("Danh sach loai tai khoan rong.");
+    if (accountTypes.empty()) {
+        throw std::runtime_error("AccountType list is empty.");
+    }
     listAccountTypes();
     std::string id;
-    std::cout << "Nhap AccountType ID: ";
+    std::cout << "Enter accountTypeID: ";
     std::getline(std::cin >> std::ws, id);
-    const auto* found = findByID(id);
-    if (!found) throw std::runtime_error("Khong tim thay AccountType ID.");
+    const AccountType* found = findByID(id);
+    if (!found) {
+        throw std::runtime_error("AccountType ID not found.");
+    }
     return *found;
 }
 
+/*
+ * Ham: addAccountType (CN 2)
+ * Chuc nang: Them AccountType moi vao cuoi danh sach; ma trung (khong phan
+ *            biet hoa/thuong) thi nem loi
+ * Tham so: type - AccountType da nhap va kiem tra o BankAccountManager
+ * Tra ve: khong; nem std::invalid_argument neu ma da ton tai
+ * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Ngay viet: 16/11/2026
+ * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
+ * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
+ * Ngay duyet:
+ * Ket qua:
+ */
 void AccountTypeList::addAccountType(const AccountType& type) {
-    if (searchID(type.getAccountTypeID()) >= 0)
-        throw std::invalid_argument("AccountType ID da ton tai.");
+    if (searchID(type.getAccountTypeID()) >= 0) {
+        throw std::invalid_argument("AccountType ID already exists.");
+    }
     accountTypes.push_back(type);
 }
 
+/*
+ * Ham: updateAccountType (CN 4)
+ * Chuc nang: Sua AccountType co ma id; ma moi khong duoc trung ma cua loai KHAC
+ * Tham so: id - ma loai can sua; updated - du lieu moi
+ * Tra ve: true neu sua duoc; false neu khong co ma id hoac ma moi bi trung
+ * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Ngay viet: 16/11/2026
+ * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
+ * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
+ * Ngay duyet:
+ * Ket qua:
+ */
 bool AccountTypeList::updateAccountType(const std::string& id, const AccountType& updated) {
-    auto* current = findByID(id);
-    if (!current) return false;
-    if (updated.getAccountTypeID() != id && searchID(updated.getAccountTypeID()) >= 0)
+    AccountType* current = findByID(id);
+    if (!current) {
         return false;
+    }
+    const int other = searchID(updated.getAccountTypeID());
+    if (other >= 0 && &accountTypes[static_cast<std::size_t>(other)] != current) {
+        return false;
+    }
     *current = updated;
     return true;
 }
