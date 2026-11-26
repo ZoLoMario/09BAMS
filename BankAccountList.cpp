@@ -111,9 +111,28 @@ bool BankAccountList::saveToFile(const std::string& filename) const {
     return static_cast<bool>(out);
 }
 
+/*
+ * Ham: searchID
+ * Chuc nang: Tim vi tri BankAccount theo ma, KHONG phan biet hoa/thuong
+ *            (nhap "a01" van tim ra "A01"; khi nap file "a01" bi bao trung voi "A01").
+ *            Dung operator== cua std::string tren chuoi da chuan hoa (muc 6 de bai),
+ *            giong AccountTypeList::searchID va BankAccount::operator==.
+ * Tham so: id - ma can tim
+ * Tra ve: vi tri trong danh sach; -1 neu khong co
+ * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Ngay viet: 17/11/2026
+ * Nguoi sua: K26DTCN107 - Nguyen Thanh Phong, 26/11/2026 (khong phan biet hoa/thuong)
+ * Nguoi duyet:
+ * Ngay duyet:
+ * Ket qua:
+ */
 int BankAccountList::searchID(const std::string& id) const {
-    for (std::size_t i = 0; i < bankAccounts.size(); ++i)
-        if (bankAccounts[i].getAccountID() == id) return static_cast<int>(i);
+    const std::string key = Utils::toLower(Utils::trim(id));
+    for (std::size_t i = 0; i < bankAccounts.size(); ++i) {
+        if (Utils::toLower(bankAccounts[i].getAccountID()) == key) {
+            return static_cast<int>(i);
+        }
+    }
     return -1;
 }
 
@@ -138,6 +157,7 @@ bool BankAccountList::removeBankAccount(const std::string& id) {
  * Chuc nang: Cap nhat BankAccount theo ma, kiem tra rang buoc truoc khi ghi:
  *            ma moi khong trung ban ghi khac, accountType phai ton tai,
  *            ownerName/accountNumber khong rong, balance khong am.
+ *            Ma moi chi khac ma cu ve hoa/thuong thi giu nguyen ma dang luu.
  * Tham so: id - ma tai khoan can sua; updated - du lieu moi
  * Tra ve: false neu khong tim thay id; nem std::invalid_argument neu vi pham rang buoc
  * Nguoi viet: K26DTCN100 - Vu Dang Khoi
@@ -158,13 +178,25 @@ bool BankAccountList::updateBankAccount(const std::string& id, const BankAccount
     if (updated.getBalance() < 0) {
         throw std::invalid_argument("balance must not be negative.");
     }
-    if (updated.getAccountID() != id && searchID(updated.getAccountID()) >= 0) {
+    // So sanh theo index, khong so sanh chuoi: searchID khong phan biet hoa/thuong nen
+    // "A01" != "a01" nhung van la chinh ban ghi dang sua, khong phai trung ma
+    const int other = searchID(updated.getAccountID());
+    if (other >= 0 && other != index) {
         throw std::invalid_argument("accountID " + updated.getAccountID() + " already exists.");
     }
     if (accountTypeList.findByID(updated.getAccountType().getAccountTypeID()) == nullptr) {
         throw std::invalid_argument("accountType does not exist.");
     }
-    bankAccounts[static_cast<std::size_t>(index)] = updated;
+    BankAccount& target = bankAccounts[static_cast<std::size_t>(index)];
+    if (other == index) {
+        // Ma moi chi khac ma cu ve hoa/thuong (vd sua "A03", nhap lai "a03"):
+        // coi nhu giu nguyen ma, giu dung cach viet dang luu ("A03")
+        target = BankAccount(target.getAccountID(), updated.getAccountType(),
+                             updated.getOwnerName(), updated.getAccountNumber(),
+                             updated.getBalance());
+    } else {
+        target = updated;
+    }
     sortAccounts();
     return true;
 }

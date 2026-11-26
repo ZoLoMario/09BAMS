@@ -299,7 +299,8 @@ void BankAccountManager::updateBankAccount() {
     }
     std::cout << "Current: " << current->screenString() << '\n';
     std::string newId = inputField("Enter new accountID: ");
-    while (newId != oldId && bankAccountList.searchID(newId) >= 0) {
+    // So sanh theo con tro (nhu updateAccountType): go "a01" de giu ma "A01" khong bi bao trung
+    while (bankAccountList.searchID(newId) >= 0 && bankAccountList.findByID(newId) != current) {
         std::cout << "[Error] ID already exists. Please try again.\n";
         newId = inputField("Enter new accountID: ");
     }
