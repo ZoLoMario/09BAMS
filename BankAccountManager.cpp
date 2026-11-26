@@ -297,7 +297,7 @@ void BankAccountManager::updateBankAccount() {
         std::cout << "Error: accountID " << oldId << " not found.\n";
         return;
     }
-    std::cout << "Current: " << current->toString() << '\n';
+    std::cout << "Current: " << current->screenString() << '\n';
     std::string newId = inputField("Enter new accountID: ");
     while (newId != oldId && bankAccountList.searchID(newId) >= 0) {
         std::cout << "[Error] ID already exists. Please try again.\n";
@@ -332,7 +332,7 @@ void BankAccountManager::depositMoney() {
     const double amount = Utils::inputDouble("Enter amount to deposit: ", 0, true);
     bankAccountList.deposit(id, amount);
     hasUnsavedAccounts = true;
-    std::cout << "New balance: " << bankAccountList.findByID(id)->toString() << '\n';
+    std::cout << "New balance: " << bankAccountList.findByID(id)->screenString() << '\n';
 }
 
 /* Ham: withdrawMoney (mo rong 13) - Chuc nang: rut tien, khong vuot qua so du */
@@ -343,11 +343,11 @@ void BankAccountManager::withdrawMoney() {
         std::cout << "Error: accountID " << id << " not found.\n";
         return;
     }
-    std::cout << "Current: " << account->toString() << '\n';
+    std::cout << "Current: " << account->screenString() << '\n';
     const double amount = Utils::inputDouble("Enter amount to withdraw: ", 0, true);
     bankAccountList.withdraw(id, amount);
     hasUnsavedAccounts = true;
-    std::cout << "New balance: " << bankAccountList.findByID(id)->toString() << '\n';
+    std::cout << "New balance: " << bankAccountList.findByID(id)->screenString() << '\n';
 }
 
 /*
