@@ -77,12 +77,15 @@ void BankAccount::setBalance(double value) { balance = value; }
 
 /*
  * Ham: toString
- * Chuc nang: Tra ve thong tin tai khoan tren mot dong, cac truong cach nhau " | "
- *            (accountID | typeName | ownerName | accountNumber | balance)
+ * Chuc nang: Tao dong du lieu de GHI TEP bankaccounts.txt, dung dinh dang de bai:
+ *            accountID, accountTypeID, ownerName, accountNumber, balance
+ *            (ghi MA loai, khong ghi typeName, de loadFromFile tim lai duoc AccountType).
+ *            Hien thi ra man hinh thi dung screenString().
  * Tham so: khong
- * Tra ve: chuoi mo ta tai khoan, balance lay 2 chu so thap phan
+ * Tra ve: chuoi mot dong, balance dang so thuong (std::fixed) 2 chu so thap phan,
+ *         khong bao gio ra dang 1.2e+07
  * Nguoi viet: K26DTCN107 - Nguyen Thanh Phong
- * Ngay viet: 17/11/2026
+ * Ngay viet: 17/11/2026; 26/11/2026 doi sang dinh dang ghi tep
  * Nguoi duyet: K26DTCN089 - Vu Trong Hanh
  *   (K26DTCN100 - Vu Dang Khoi duyet thay, Hanh ban da xin phep nhom)
  * Ngay duyet: 25/11/2026
@@ -90,8 +93,8 @@ void BankAccount::setBalance(double value) { balance = value; }
  */
 std::string BankAccount::toString() const {
     std::ostringstream out;
-    out << accountID << " | " << accountType.getTypeName() << " | " << ownerName
-        << " | " << accountNumber << " | " << std::fixed << std::setprecision(2) << balance;
+    out << accountID << ", " << accountType.getAccountTypeID() << ", " << ownerName
+        << ", " << accountNumber << ", " << std::fixed << std::setprecision(2) << balance;
     return out.str();
 }
 
