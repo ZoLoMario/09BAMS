@@ -7,6 +7,7 @@
 #include "Menu.h"
 #include <iostream>
 #include <vector>
+#include "Utils.h"
 
 int Menu::getChoice(const std::vector<std::string>& options) {
     for (std::size_t i = 0; i < options.size(); ++i)
@@ -14,6 +15,9 @@ int Menu::getChoice(const std::vector<std::string>& options) {
     int choice;
     std::cout << "Lua chon: ";
     while (!(std::cin >> choice) || choice < 1 || choice > static_cast<int>(options.size())) {
+        if (std::cin.eof()) {
+            throw Utils::InputEnded();  // 27/11 Khoi: het dau vao, khong lap mai
+        }
         std::cout << "Lua chon khong hop le. Nhap lai: ";
         std::cin.clear();
         std::cin.ignore(10000, '\n');

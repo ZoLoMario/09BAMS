@@ -37,19 +37,33 @@ BankAccountManager::BankAccountManager()
  * Ham: run
  * Chuc nang: Nap du lieu roi lap: hien menu -> nhap lua chon -> thuc hien.
  *            Loi trong mot chuc nang chi bao loi, khong lam dung chuong trinh.
- * Tra ve: 0 khi nguoi dung chon Exit
+ *            Het dau vao (Utils::InputEnded) thi thoat, bao neu con thay doi chua luu.
+ * Tra ve: 0 khi nguoi dung chon Exit hoac het dau vao
+ * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 27/11/2026 (thoat khi het dau vao)
  */
 int BankAccountManager::run() {
     loadData();
     bool isRunning = true;
-    while (isRunning) {
-        showMenu();
-        const int choice = Utils::inputInt("Your choice: ", 0, MAX_CHOICE);
-        try {
-            isRunning = handleChoice(choice);
-        } catch (const std::exception& e) {
-            std::cout << "Error: " << e.what() << '\n';
+    try {
+        while (isRunning) {
+            showMenu();
+            const int choice = Utils::inputInt("Your choice: ", 0, MAX_CHOICE);
+            try {
+                isRunning = handleChoice(choice);
+            } catch (const Utils::InputEnded&) {
+                throw;  // khong nuot loi het dau vao, de thoat vong lap ben ngoai
+            } catch (const std::exception& e) {
+                std::cout << "Error: " << e.what() << '\n';
+            }
         }
+    } catch (const Utils::InputEnded&) {
+        // 27/11 Khoi: het dau vao (Ctrl+Z/Ctrl+D) thi thoat gon thay vi lap vo han.
+        // Khong tu luu (de bai: Exit khong tu ghi file), chi bao ro.
+        std::cout << "\nInput ended.";
+        if (hasUnsavedTypes || hasUnsavedAccounts) {
+            std::cout << " Unsaved changes were NOT saved.";
+        }
+        std::cout << '\n';
     }
     std::cout << "Goodbye!\n";
     return 0;
