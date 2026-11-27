@@ -26,8 +26,8 @@
 | 2.2 | Chốt chữ ký hàm, file `.h` | Hanh | | 15/11 | ✅ | Có trên `main` |
 | 2.3 | `accounttypes.txt`, `bankaccounts.txt` | Trung | | 15/11 | 👀 | Trên `main` đã dùng dữ liệu mẫu của đề (PR #1), chờ Trung xác nhận |
 | 2.4 | Repo GitHub | Khôi | | 15/11 | ✅ | Đủ 7 thành viên |
-| 3.1 | `AccountType`; CN 1, 5 | Khánh | Trung | 19/11 | 🔄 | Còn: `toString()` hiện lãi suất 3–4 chữ số thập phân |
-| 3.2 | CN 2–4, `getUserChoice` | Hanh | Khánh | 19/11 | 🔄 | Còn: `searchID` không phân biệt hoa/thường |
+| 3.1 | `AccountType`; CN 1, 5 | Khánh | Trung | 19/11 | 👀 | Đã gộp vào `main` ([PR #3](https://github.com/ZoLoMario/09BAMS/pull/3), 20/11), đã sửa `toString()` giữ đủ chữ số lãi suất. **Chờ Trung duyệt**: chưa có review trên PR, "Ngay duyet" còn trống ở `AccountType.cpp/.h` và hàm CN 1, CN 5 trong `AccountTypeList.cpp` |
+| 3.2 | CN 2–4, `getUserChoice` | Hanh | Khánh | 19/11 | ✅ | Khôi sửa hộ `searchID` không phân biệt hoa/thường ([PR #7](https://github.com/ZoLoMario/09BAMS/pull/7), 25/11). Khánh duyệt 27/11: 5 hàm trong `AccountTypeList.cpp` **Đạt**, có 1 góp ý nhỏ ở `getUserChoice` (hết đầu vào thì lặp vô hạn) |
 | 3.3 | `BankAccount`; CN 6 | Phong | Hanh | 19/11 | 🔄 | Còn: `operator<`, `screenString()` |
 | 3.4 | CN 7, CN 11 | Đạt | Phong | 20/11 | 🔄 | Còn: tìm theo **một phần** typeName; `saveToFile` ghi số dư dạng thường (không `e+07`) |
 | 3.5 | CN 8–9 | Tài | Đạt | 20/11 | ✅ | |
@@ -39,7 +39,7 @@
 | 3.11 | **Code freeze**: Dev-C++ build không lỗi, đủ 11 chức năng | Khôi | Cả nhóm | **22/11** | ⏳ | |
 | 4.1 | Bảng test case | Trung | | 22/11 | ⏳ | |
 | 4.2 | Chạy test phần mình (bảng dưới) | Từng người | | 24/11 | 🔄 | |
-| 4.3 | Tổng hợp lỗi, chụp ảnh 11 chức năng | Trung | Khánh | 25/11 | ⏳ | |
+| 4.3 | Tổng hợp lỗi, chụp ảnh 11 chức năng | Trung | Khánh | 25/11 | ⚠️ | Khánh chưa duyệt được: chưa có bảng tổng hợp lỗi và ảnh |
 | 5.1 | Báo cáo Phần I–III, VIII–IX | Đạt | Hanh | 26/11 | 🔄 | |
 | 5.2 | Báo cáo Phần IV–V | Hanh | Hanh | 25/11 | ⏳ | |
 | 5.3 | Báo cáo Phần VI + hướng dẫn chạy | Khôi | Hanh | 25/11 | 🔄 | Mỗi người gửi Khôi mô tả hàm mình viết |
@@ -81,11 +81,11 @@
 
 | Test | Nội dung | Người chạy | Trạng thái |
 |---|---|---|---|
-| 01 | Nạp và hiển thị 3 AccountType | Khánh | 🔄 đã viết test case ([tests/TEST-CASE-CN1-CN5.md](tests/TEST-CASE-CN1-CN5.md)), chưa điền kết quả |
+| 01 | Nạp và hiển thị 3 AccountType | Khánh | ✅ 3/3 (Khánh chạy 27/11 trên `main` `49150ad`): [tests/TEST-CASE-CN1-CN5.md](tests/TEST-CASE-CN1-CN5.md). Còn ảnh Dev-C++ |
 | 02 | Thêm AccountType: mã trùng, tên rỗng, số sai | Hanh | ✅ 3/3 (Khôi chạy hộ 25/11): [tests/TEST-CASE-CN2-CN4.md](tests/TEST-CASE-CN2-CN4.md). Còn ảnh Dev-C++ |
 | 03 | Tìm AccountType: ID có / không có | Hanh | ✅ 3/3 (Khôi chạy hộ 25/11). Còn ảnh Dev-C++ |
 | 04 | Sửa AccountType, xác nhận dữ liệu | Hanh | ✅ 3/3 (Khôi chạy hộ 25/11). Còn ảnh Dev-C++ |
-| 05 | Lưu accounttypes.txt, mở lại đối chiếu | Khánh | 🔄 đã viết test case, chưa điền kết quả |
+| 05 | Lưu accounttypes.txt, mở lại đối chiếu | Khánh | ✅ 2/2 (Khánh chạy 27/11, cùng file trên). Còn ảnh Dev-C++ |
 | 06 | Sắp xếp theo typeName rồi ID (có typeName trùng) | Phong | 🔄 đã viết test case ([tests/TEST-CASE-CN6.md](tests/TEST-CASE-CN6.md)), chưa điền kết quả |
 | 07 | Tìm theo một phần typeName: có / không có kết quả | Đạt | ⏳ |
 | 08 | Thêm BankAccount: mã trùng, tham chiếu sai | Tài | ⏳ |
@@ -115,3 +115,6 @@
 | 25/11 | Khôi | Hỗ trợ Hanh (Hanh bận, đã xin phép): sửa CN 2–4 (`searchID` không phân biệt hoa/thường, thông báo tiếng Anh, comment đầu hàm); Test 02–04 9/9 đạt; review code Phong thay Hanh (`BankAccount.cpp/.h`, `sortAccounts`: Đạt) |
 | 25/11 | Khôi | Chạy lại Test 10, Test 12 (file) và Exit trên `main` `1ece4c0`: 10/10 đạt, đưa bảng lên `tests/TEST-CASE-CN10-CN12.md` |
 | 26/11 | Phong | Viết test case CN 6 (Test 06): `tests/TEST-CASE-CN6.md`, 8 test, chưa chạy |
+| 27/11 | Khánh | Bổ sung trạng thái review: 3.1 chờ Trung duyệt (PR #3 đã gộp, chưa có review); 3.2 chờ Khánh duyệt sau khi Khôi sửa (PR #7); 4.3 chưa có gì để duyệt |
+| 27/11 | Khánh | Chạy Test 01, Test 05 trên `main` `49150ad` (g++ của Dev-C++): 5/5 đạt, điền kết quả vào `tests/TEST-CASE-CN1-CN5.md` |
+| 27/11 | Khánh | Duyệt code CN 2–4 của Hanh (`searchID`, `findByID`, `getUserChoice`, `addAccountType`, `updateAccountType`): Đạt, ghi kết quả vào comment đầu hàm |
