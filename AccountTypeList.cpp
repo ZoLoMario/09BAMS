@@ -93,8 +93,8 @@ bool AccountTypeList::saveToFile(const std::string& filename) const {
  * Ngay viet: 16/11/2026
  * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
  * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet: 27/11/2026
+ * Ket qua: Dat
  */
 int AccountTypeList::searchID(const std::string& id) const {
     const std::string key = Utils::toLower(Utils::trim(id));
@@ -115,8 +115,8 @@ int AccountTypeList::searchID(const std::string& id) const {
  * Ngay viet: 16/11/2026
  * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
  * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet: 27/11/2026
+ * Ket qua: Dat
  */
 AccountType* AccountTypeList::findByID(const std::string& id) {
     const int i = searchID(id);
@@ -137,8 +137,10 @@ const AccountType* AccountTypeList::findByID(const std::string& id) const {
  * Ngay viet: 16/11/2026
  * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
  * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet: 27/11/2026
+ * Ket qua: Dat. Gop y: neu het dau vao (Ctrl+Z / EOF) thi id rong, ham nem loi
+ *   'not found' va chooseAccountType hoi lai mai (lap vo han); nen kiem tra
+ *   std::cin sau getline va nem loi rieng khi het dau vao.
  */
 AccountType AccountTypeList::getUserChoice() const {
     if (accountTypes.empty()) {
@@ -165,8 +167,8 @@ AccountType AccountTypeList::getUserChoice() const {
  * Ngay viet: 16/11/2026
  * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
  * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet: 27/11/2026
+ * Ket qua: Dat
  */
 void AccountTypeList::addAccountType(const AccountType& type) {
     if (searchID(type.getAccountTypeID()) >= 0) {
@@ -184,8 +186,8 @@ void AccountTypeList::addAccountType(const AccountType& type) {
  * Ngay viet: 16/11/2026
  * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 25/11/2026 (ho tro Hanh)
  * Nguoi duyet: K26DTCN019 - Nguyen Quoc Khanh
- * Ngay duyet:
- * Ket qua:
+ * Ngay duyet: 27/11/2026
+ * Ket qua: Dat
  */
 bool AccountTypeList::updateAccountType(const std::string& id, const AccountType& updated) {
     AccountType* current = findByID(id);
