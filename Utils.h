@@ -1,3 +1,10 @@
+/*
+ * File: Utils.h
+ * Mo ta: Ham nhap lieu
+ * Nguoi viet: K26DTCN115 - Luong Duc Trung
+ * Ngay viet: 16/11/2026
+ */
+
 #ifndef UTILS_H
 #define UTILS_H
 

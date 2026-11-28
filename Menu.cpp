@@ -1,7 +1,7 @@
 /*
  * File: Menu.cpp
  * Mo ta: Quan ly danh sach Menu (doc/ghi file, them, sua, tim)
- * Nguoi viet: K26DTCN089 - Vu Trong Hanh
+ * Nguoi viet: K26DTCN115 - Luong Duc Trung
  * Ngay viet: 16/11/2026
  */
 #include "Menu.h"
