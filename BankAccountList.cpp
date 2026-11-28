@@ -57,6 +57,9 @@ bool BankAccountList::loadFromFile(const std::string& filename) {
     int lineNumber = 0;
     while (std::getline(in, line)) {
         lineNumber++;
+        if (lineNumber == 1) {
+            DataFile::removeBom(line);  // 27/11 Khoi: file Notepad luu kem BOM
+        }
         if (DataFile::isSkippableLine(line) || DataFile::isHeaderLine(line, "accountID")) {
             continue;
         }
@@ -96,19 +99,30 @@ bool BankAccountList::loadFromFile(const std::string& filename) {
  * Nguoi viet: K26DTCN008 - Nguyen Thanh Dat
  * Ngay viet: 22/11/2026
  * Nguoi sua: K26DTCN107 - Nguyen Thanh Phong, 26/11/2026 (ghi tung dong bang toString())
+ *            K26DTCN100 - Vu Dang Khoi, 27/11/2026 (ghi ra file tam roi moi thay file
+ *            that; truoc day ghi hong giua chung thi bankaccounts.txt con 0 byte)
  * Nguoi duyet: K26DTCN107 - Nguyen Thanh Phong
  * Ngay duyet:
  * Ket qua:
  */
 bool BankAccountList::saveToFile(const std::string& filename) const {
-    std::ofstream out(filename);
-    if (!out) return false;
-    out << "# accountID, accountType, ownerName, accountNumber, balance\n";
-    // Luu y: truong co dau ',' (chi co the den tu file '|' sua tay) se loi khi nap lai
-    for (const auto& a : bankAccounts)
-        out << a.toString() << '\n';
-    out.flush();
-    return static_cast<bool>(out);
+    if (!DataFile::canWrite(filename)) return false;  // file chi doc: giu nguyen
+    const std::string tempName = filename + ".tmp";
+    {
+        std::ofstream out(tempName);
+        if (!out) return false;
+        out << "# accountID, accountType, ownerName, accountNumber, balance\n";
+        // Luu y: truong co dau ',' (chi co the den tu file '|' sua tay) se loi khi nap lai
+        for (const auto& a : bankAccounts)
+            out << a.toString() << '\n';
+        out.flush();
+        if (!out) {
+            out.close();
+            std::remove(tempName.c_str());
+            return false;
+        }
+    }
+    return DataFile::replaceFile(tempName, filename);
 }
 
 /*

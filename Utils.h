@@ -8,8 +8,67 @@
 #include <algorithm>
 #include <cctype>
 #include <limits>
+#include <cmath>
+#include <exception>
+#include <stdexcept>
 
 namespace Utils {
+    /*
+     * Class: InputEnded
+     * Chuc nang: Bao het dau vao (Ctrl+Z tren Windows, Ctrl+D tren Linux, hoac file
+     *            nhap da het dong). Khong ke thua runtime_error de cac khoi
+     *            catch(runtime_error) nhap lai khong bat nham roi hoi lai mai.
+     * Nguoi viet: K26DTCN100 - Vu Dang Khoi, 27/11/2026
+     * Nguoi duyet:
+     * Ngay duyet:
+     * Ket qua:
+     */
+    class InputEnded : public std::exception {
+    public:
+        const char* what() const noexcept override { return "Input ended (EOF)."; }
+    };
+
+    /*
+     * Ham: readLine
+     * Chuc nang: Doc mot dong tu ban phim; het dau vao thi nem InputEnded
+     *            (truoc day getline that bai tra ve chuoi rong, vong nhap lap vo han)
+     * Tham so: line - dong doc duoc
+     * Tra ve: khong
+     * Nguoi viet: K26DTCN100 - Vu Dang Khoi, 27/11/2026
+     * Nguoi duyet:
+     * Ngay duyet:
+     * Ket qua:
+     */
+    inline void readLine(std::string& line) {
+        if (!std::getline(std::cin, line)) {
+            throw InputEnded();
+        }
+    }
+
+    /*
+     * Ham: isPlainNumber
+     * Chuc nang: Chi nhan chu so, dau '+'/'-', dau '.', 'e'/'E' (so mu).
+     *            std::stod con doc duoc "nan", "inf", "0x10" (=16) nen phai chan truoc.
+     * Tham so: text - chuoi da trim
+     * Tra ve: true neu chi gom cac ky tu tren va co it nhat mot chu so
+     * Nguoi viet: K26DTCN100 - Vu Dang Khoi, 27/11/2026
+     * Nguoi duyet:
+     * Ngay duyet:
+     * Ket qua:
+     */
+    inline bool isPlainNumber(const std::string& text) {
+        bool hasDigit = false;
+        for (std::size_t i = 0; i < text.size(); ++i) {
+            const unsigned char c = static_cast<unsigned char>(text[i]);
+            if (std::isdigit(c)) {
+                hasDigit = true;
+            } else if (c != '+' && c != '-' && c != '.' && c != 'e' && c != 'E') {
+                return false;
+            }
+        }
+        return hasDigit;
+    }
+
     // Xóa khoảng trắng thừa ở đầu và cuối chuỗi
     inline std::string trim(const std::string& str) {
         size_t first = str.find_first_not_of(" \t\r\n");
@@ -42,7 +101,7 @@ namespace Utils {
         std::string value;
         while (true) {
             std::cout << prompt;
-            std::getline(std::cin, value);
+            readLine(value);
             value = trim(value);
             if (value.empty()) {
                 std::cout << "[Error] Input cannot be empty. Please try again.\n";
@@ -59,12 +118,17 @@ namespace Utils {
         std::string line;
         while (true) {
             std::cout << prompt;
-            std::getline(std::cin, line);
+            readLine(line);
             line = trim(line);
             try {
+                // Sua 27/11/2026 (Khoi): chan "nan", "inf", "0x10"; nan lot qua moi
+                // phep so sanh (nan < 0 la false) nen truoc day nhan ca so du nan
+                if (!isPlainNumber(line)) {
+                    throw std::invalid_argument("Not a plain number");
+                }
                 size_t idx = 0;
                 double val = std::stod(line, &idx);
-                if (idx != line.length()) {
+                if (idx != line.length() || !std::isfinite(val)) {
                     throw std::invalid_argument("Trailing characters");
                 }
                 if (strictlyGreater && val <= minVal) {
@@ -85,7 +149,7 @@ namespace Utils {
         std::string line;
         while (true) {
             std::cout << prompt;
-            std::getline(std::cin, line);
+            readLine(line);
             line = trim(line);
             try {
                 size_t idx = 0;

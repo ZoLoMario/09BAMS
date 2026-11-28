@@ -87,11 +87,11 @@
 | 04 | Sửa AccountType, xác nhận dữ liệu | Hanh | ✅ 3/3 (Khôi chạy hộ 25/11). Còn ảnh Dev-C++ |
 | 05 | Lưu accounttypes.txt, mở lại đối chiếu | Khánh | ✅ 2/2 (Khánh chạy 27/11, cùng file trên). Còn ảnh Dev-C++ |
 | 06 | Sắp xếp theo typeName rồi ID (có typeName trùng) | Phong | 🔄 đã viết test case ([tests/TEST-CASE-CN6.md](tests/TEST-CASE-CN6.md)), chưa điền kết quả |
-| 07 | Tìm theo một phần typeName: có / không có kết quả | Đạt | ⏳ |
+| 07 | Tìm theo một phần typeName: có / không có kết quả | Đạt | ✅ 9/9 (Đạt chạy 26/11 trên `d70f232`): [tests/TEST-CASE-CN7-CN11.md](tests/TEST-CASE-CN7-CN11.md). Khôi chạy lại TC07-01 → 05 trên `49150ad`: đúng, nhưng màn hình giờ là dạng bảng nên cần sửa cột "Thực tế" khi chụp ảnh Dev-C++ |
 | 08 | Thêm BankAccount: mã trùng, tham chiếu sai | Tài | ⏳ |
 | 09 | Xoá BankAccount: ID có / không có | Tài | ⏳ |
 | 10 | Cập nhật BankAccount: hợp lệ / không hợp lệ | Khôi | ✅ 6/6, chạy lại 25/11 trên `main`: [tests/TEST-CASE-CN10-CN12.md](tests/TEST-CASE-CN10-CN12.md). Còn chụp ảnh Dev-C++ |
-| 11 | Lưu bankaccounts.txt, chạy lại, kiểm tra | Đạt | ⏳ |
+| 11 | Lưu bankaccounts.txt, chạy lại, kiểm tra | Đạt | ✅ 7/7 (Đạt chạy 26/11, cùng file trên). Còn ảnh Dev-C++ |
 | 12 | Tệp thiếu, dòng sai định dạng | Khôi | ✅ 2/2 (cùng file trên). Còn chụp ảnh Dev-C++ |
 | 12 | Menu nhập chữ thay vì số | Trung | ⏳ |
 
@@ -118,3 +118,5 @@
 | 27/11 | Khánh | Bổ sung trạng thái review: 3.1 chờ Trung duyệt (PR #3 đã gộp, chưa có review); 3.2 chờ Khánh duyệt sau khi Khôi sửa (PR #7); 4.3 chưa có gì để duyệt |
 | 27/11 | Khánh | Chạy Test 01, Test 05 trên `main` `49150ad` (g++ của Dev-C++): 5/5 đạt, điền kết quả vào `tests/TEST-CASE-CN1-CN5.md` |
 | 27/11 | Khánh | Duyệt code CN 2–4 của Hanh (`searchID`, `findByID`, `getUserChoice`, `addAccountType`, `updateAccountType`): Đạt, ghi kết quả vào comment đầu hàm |
+| 27/11 | Khôi | Gộp PR #9 (Khánh) và PR #8 (Đạt, Test 07 và 11) vào `main` |
+| 27/11 | Khôi | Sửa 5 lỗi nhập liệu và lưu file: `nan`/`inf`/`0x10` lọt qua ô nhập số và file, hết đầu vào thì lặp vô hạn, lưu hỏng giữa chừng thì file còn 0 byte, file có BOM mất bản ghi đầu. 13/13 test đạt: [tests/TEST-CASE-LOI-NHAP-LIEU.md](tests/TEST-CASE-LOI-NHAP-LIEU.md) |

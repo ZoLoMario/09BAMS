@@ -36,6 +36,9 @@ bool AccountTypeList::loadFromFile(const std::string& filename) {
     int lineNumber = 0;
     while (std::getline(in, line)) {
         lineNumber++;
+        if (lineNumber == 1) {
+            DataFile::removeBom(line);  // 27/11 Khoi: file Notepad luu kem BOM
+        }
         if (DataFile::isSkippableLine(line) || DataFile::isHeaderLine(line, "accountTypeID")) {
             continue;
         }
@@ -69,18 +72,30 @@ bool AccountTypeList::loadFromFile(const std::string& filename) {
  * Tra ve: false neu khong mo duoc file hoac ghi loi, nguoc lai true
  * Nguoi viet: K26DTCN019 - Nguyen Quoc Khanh
  * Ngay viet: 20/11/2026
+ * Nguoi sua: K26DTCN100 - Vu Dang Khoi, 27/11/2026 (ghi ra file tam roi moi thay
+ *   file that; truoc day ghi hong giua chung thi accounttypes.txt con 0 byte)
  * Nguoi duyet: K26DTCN115 - Luong Duc Trung
  * Ngay duyet:
  * Ket qua:
  */
 bool AccountTypeList::saveToFile(const std::string& filename) const {
-    std::ofstream out(filename);
-    if (!out.is_open()) return false;
-    out << "# accountTypeID, typeName, currency, interestRate\n";
-    for (const auto& t : accountTypes)
-        out << t.toString() << '\n';
-    //Kiem tra trang thai luong sau khi ghi (vd o dia day)
-    return static_cast<bool>(out);
+    if (!DataFile::canWrite(filename)) return false;  // file chi doc: giu nguyen
+    const std::string tempName = filename + ".tmp";
+    {
+        std::ofstream out(tempName);
+        if (!out.is_open()) return false;
+        out << "# accountTypeID, typeName, currency, interestRate\n";
+        for (const auto& t : accountTypes)
+            out << t.toString() << '\n';
+        out.flush();
+        //Kiem tra trang thai luong sau khi ghi (vd o dia day)
+        if (!out) {
+            out.close();
+            std::remove(tempName.c_str());
+            return false;
+        }
+    }
+    return DataFile::replaceFile(tempName, filename);
 }
 
 /*
@@ -149,7 +164,11 @@ AccountType AccountTypeList::getUserChoice() const {
     listAccountTypes();
     std::string id;
     std::cout << "Enter accountTypeID: ";
-    std::getline(std::cin >> std::ws, id);
+    // 27/11 Khoi: het dau vao thi nem InputEnded (theo gop y cua Khanh o PR #9),
+    // truoc day id rong -> "not found" -> chooseAccountType hoi lai mai
+    if (!std::getline(std::cin >> std::ws, id)) {
+        throw Utils::InputEnded();
+    }
     const AccountType* found = findByID(id);
     if (!found) {
         throw std::runtime_error("AccountType ID not found.");
